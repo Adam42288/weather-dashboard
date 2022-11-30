@@ -10,12 +10,12 @@ searchValue.addEventListener('keypress', setFunc);
         if(e.keyCode === 13) {
             // getting the text that was entered into the input form on the site.
             city = searchValue.value;
+            queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + APIKey;
             getData(city);
         }
     }
-
-    function getData(value) {
-        fetch('http://api.openweathermap.org/data/2.5/weather?q='+value+'&units=imperial&appid='+APIKey)
+    function getData(city) {
+        fetch(queryURL)
         .then (function (response) {
             return response.json();
         })
