@@ -1,6 +1,7 @@
 // API Key
 var APIKey = "140868a0bfdca5e4838b5700f0881180";
 var city;
+var queryURL;
 
 // Weather API placeholder
 var searchValue = document.querySelector('#searchbox');
