@@ -1,9 +1,15 @@
+// API Key
+var APIKey = "140868a0bfdca5e4838b5700f0881180";
+var city;
+
 // Weather API placeholder
 var searchValue = document.querySelector('#searchbox');
 searchValue.addEventListener('keypress', setFunc);
     function setFunc(e) {
         if(e.keyCode === 13) {
-            getData(searchValue.value);
+            // getting the text that was entered into the input form on the site.
+            city = searchValue.value;
+            getData(city);
         }
     }
 
