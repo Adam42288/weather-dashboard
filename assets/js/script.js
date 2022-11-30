@@ -14,7 +14,7 @@ searchValue.addEventListener('keypress', setFunc);
     }
 
     function getData(value) {
-        fetch('http://api.openweathermap.org/data/2.5/weather?q='+value+'&units=imperial&appid=140868a0bfdca5e4838b5700f0881180')
+        fetch('http://api.openweathermap.org/data/2.5/weather?q='+value+'&units=imperial&appid='+APIKey)
         .then (function (response) {
             return response.json();
         })
