@@ -2,6 +2,9 @@
 var APIKey = "140868a0bfdca5e4838b5700f0881180";
 var city;
 var queryURL;
+var geoQuery;
+var lat;
+var long;
 
 // Weather API placeholder
 var searchValue = document.querySelector('#searchbox');
@@ -11,6 +14,8 @@ searchValue.addEventListener('keypress', setFunc);
             // getting the text that was entered into the input form on the site.
             city = searchValue.value;
             queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + APIKey;
+            geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
+            getLatLong(city)
             getData(city);
         }
     }
@@ -29,6 +34,18 @@ searchValue.addEventListener('keypress', setFunc);
             document.querySelector('#weather_desc').innerHTML = weather.weather[0].description;
             document.querySelector('#wind_dir_speed').innerHTML = "Wind direction: "+ weather.wind.deg
             + " Degrees / Wind speed: "+weather.wind.speed + " MPH";
+        })
+        .catch(function (err) {
+            console.log(err);
+        })
+    }
+    function getLatLong(city) {
+        fetch(geoQuery)
+        .then (function (response) {
+            return response.json();
+        })
+        .then(function (latlong) {
+            console.log(latlong);
         })
         .catch(function (err) {
             console.log(err);
