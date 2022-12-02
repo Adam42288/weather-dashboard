@@ -7,14 +7,36 @@ var lat;
 var long;
 var prevCities = document.getElementById('previous_cities');
 
-
 var cityStorage = window.localStorage.getItem("City")
 ? JSON.parse(window.localStorage.getItem("City"))
 : [];
-console.log(cityStorage);
-for (var i = 0; i < cityStorage.length; i++) {
-    console.log("this city is " + cityStorage[i]);
+
+
+// Function to print cities from history at bottom of page.    
+    for (var i = 0; i < cityStorage.length; i++) {
+    var entry = document.createElement('li');
+                                     // Create anchor element.
+                                     var a = document.createElement('a'); 
+          
+                                     // Create the text node for anchor element.
+                                     var link = document.createTextNode(cityStorage[i]);
+                                       
+                                     // Append the text node to anchor element.
+                                     a.appendChild(link); 
+                                       
+                                     // Set the title.
+                                     a.title = cityStorage[i]; 
+                                       
+                                     // Set the href property.
+                                     a.href = "javascript:getLatLong(cityStorage[i]);"; 
+                                       
+                                     // Append the anchor element to the body.
+                                     entry.appendChild(a); 
+
+        prevCities.appendChild(entry);
 }
+
+
 // Weather API placeholder
 var searchValue = document.querySelector('#searchbox');
 searchValue.addEventListener('keypress', setFunc);
