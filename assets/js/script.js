@@ -5,6 +5,7 @@ var queryURL;
 var geoQuery;
 var lat;
 var long;
+var prevCities = document.getElementById('previous_cities');
 
 // Weather API placeholder
 var searchValue = document.querySelector('#searchbox');
@@ -22,15 +23,6 @@ searchValue.addEventListener('keypress', setFunc);
         
        // cityStorage.push(newCity);
 
-    
-        // for (var i = 0; i < cityStorage.length; i++) {
-        //     var name = cityStorage[i].Initials;
-        //     var score1 = cityStorage[i].Score;
-        //     var entry = document.createElement('li');
-        //     entry.appendChild(document.createTextNode(name + ': ' + score1));
-        //     listscores.appendChild(entry);
-        // }
-
         if(e.keyCode === 13) {
             // getting the text that was entered into the input form on the site.
             city = searchValue.value;
@@ -38,7 +30,27 @@ searchValue.addEventListener('keypress', setFunc);
             localStorage.setItem("City", city);
             console.log(localStorage.getItem("City"));
              localStorage.setItem("City", JSON.stringify(cityStorage));
-             console.log(cityStorage[3]);
+                var entry = document.createElement('li');
+                                             // Create anchor element.
+                                             var a = document.createElement('a'); 
+                  
+                                             // Create the text node for anchor element.
+                                             var link = document.createTextNode(city);
+                                               
+                                             // Append the text node to anchor element.
+                                             a.appendChild(link); 
+                                               
+                                             // Set the title.
+                                             a.title = city; 
+                                               
+                                             // Set the href property.
+                                             a.href = "javascript:getLatLong(city);"; 
+                                               
+                                             // Append the anchor element to the body.
+                                             entry.appendChild(a); 
+
+                prevCities.appendChild(entry);
+
             geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
             getLatLong(city)
         }
@@ -94,3 +106,5 @@ searchValue.addEventListener('keypress', setFunc);
             console.log(err);
         })
     }
+
+  
