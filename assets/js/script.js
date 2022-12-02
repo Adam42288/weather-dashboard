@@ -42,8 +42,6 @@ searchValue.addEventListener('keypress', setFunc);
         var long2 = long;
         console.log(long2);
         queryURL = 'https://api.openweathermap.org/data/3.0/onecall?lat=' + lat1 + '&lon=' + long2 +'&units=imperial&exclude=hourly,minutely,daily&appid=' + APIKey;
-        // queryURL = 'https://api.openweathermap.org/data/3.0/onecall?lat=32.7762719&lon=-96.7968559&units=imperial&exclude=hourly,daily&appid='+ APIKey;
-        // queryURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + city + '&units=imperial&appid=' + APIKey;
         fetch(queryURL)
         .then (function (response) {
             return response.json();
