@@ -44,18 +44,16 @@ body {
    .profile-background {
      background-image: url("../images/landing-page.jpg");
      display: flex;
-     height: 920px;
+     height: 320px;
      background-position: top;
      background-size: cover;
      background-repeat: no-repeat;
      transform: translate(-50% -50%);
    }
    
-   
-   
    .hero-intro {
      text-align: center;
-     margin-top: 375px;
+     margin-top: 75px;
      font-size: 48px;
      color: #ddd;
    }
