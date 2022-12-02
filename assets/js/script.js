@@ -7,21 +7,18 @@ var lat;
 var long;
 var prevCities = document.getElementById('previous_cities');
 
+
+var cityStorage = window.localStorage.getItem("City")
+? JSON.parse(window.localStorage.getItem("City"))
+: [];
+console.log(cityStorage);
+for (var i = 0; i < cityStorage.length; i++) {
+    console.log("this city is " + cityStorage[i]);
+}
 // Weather API placeholder
 var searchValue = document.querySelector('#searchbox');
 searchValue.addEventListener('keypress', setFunc);
     function setFunc(e) {
-        
-        var cityStorage = window.localStorage.getItem("City")
-        ? JSON.parse(window.localStorage.getItem("City"))
-        : [];
-        // var newCity = {
-        //     "City": searchValue.value
-        //    "Initials": initialinput.value,
-        //     "Score": score,
-        //   };
-        
-       // cityStorage.push(newCity);
 
         if(e.keyCode === 13) {
             // getting the text that was entered into the input form on the site.
@@ -61,11 +58,11 @@ searchValue.addEventListener('keypress', setFunc);
             return response.json();
         })
         .then(function (latlong) {
-            console.log(latlong);
+            
             lat = latlong[0].lat;
-            console.log(lat);
+            
             long = latlong[0].lon;
-            console.log(long);
+            
             getData(lat, long);
         })
         .catch(function (err) {
