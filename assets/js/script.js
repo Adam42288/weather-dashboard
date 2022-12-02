@@ -38,7 +38,7 @@ var cityStorage = window.localStorage.getItem("City")
 
 
 // Weather API placeholder
-var searchValue = document.querySelector('#searchbox');
+var searchValue = document.querySelector('#cityInput');
 searchValue.addEventListener('keypress', setFunc);
     function setFunc(e) {
 
