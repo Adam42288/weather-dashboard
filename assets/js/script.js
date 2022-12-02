@@ -10,12 +10,37 @@ var long;
 var searchValue = document.querySelector('#searchbox');
 searchValue.addEventListener('keypress', setFunc);
     function setFunc(e) {
+        
+        var cityStorage = window.localStorage.getItem("City")
+        ? JSON.parse(window.localStorage.getItem("City"))
+        : [];
+        // var newCity = {
+        //     "City": searchValue.value
+        //    "Initials": initialinput.value,
+        //     "Score": score,
+        //   };
+        
+       // cityStorage.push(newCity);
+
+    
+        // for (var i = 0; i < cityStorage.length; i++) {
+        //     var name = cityStorage[i].Initials;
+        //     var score1 = cityStorage[i].Score;
+        //     var entry = document.createElement('li');
+        //     entry.appendChild(document.createTextNode(name + ': ' + score1));
+        //     listscores.appendChild(entry);
+        // }
+
         if(e.keyCode === 13) {
             // getting the text that was entered into the input form on the site.
             city = searchValue.value;
+            cityStorage.push(city);
+            localStorage.setItem("City", city);
+            console.log(localStorage.getItem("City"));
+             localStorage.setItem("City", JSON.stringify(cityStorage));
+             console.log(cityStorage[3]);
             geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
             getLatLong(city)
-          //  getData(city);
         }
     }
     function getLatLong(city) {
@@ -69,5 +94,3 @@ searchValue.addEventListener('keypress', setFunc);
             console.log(err);
         })
     }
-
-
