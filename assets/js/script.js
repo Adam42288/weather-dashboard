@@ -108,14 +108,14 @@ searchValue.addEventListener('keypress', setFunc);
             // document.querySelector('#city').innerHTML = weather.name;
             document.querySelector('#city').innerHTML = city;
             // document.querySelector('#temp').innerHTML = weather.main.temp;
-            document.querySelector('#temp').innerHTML = weather.current.temp;
+            document.querySelector('#temp').innerHTML = "Current Temperature: " + weather.current.temp;
             // document.querySelector('#min_max_temp').innerHTML = 
-            document.querySelector('#min_max_temp').innerHTML = weather.current.feels_like;
+            document.querySelector('#humidity').innerHTML = "Humidity: "+ weather.current.humidity;
             // "Min. "+weather.main.temp_min+" / Max. "+weather.main.temp_max;
             // document.querySelector('#weather').innerHTML = weather.weather[0].main;
-            document.querySelector('#weather').innerHTML = weather.current.weather[0].main;
+            // document.querySelector('#weather').innerHTML = weather.current.weather[0].main;
             // document.querySelector('#weather_desc').innerHTML = weather.weather[0].description;
-            document.querySelector('#weather_desc').innerHTML = weather.current.weather[0].description;
+            // document.querySelector('#weather_desc').innerHTML = weather.current.weather[0].description;
             // document.querySelector('#wind_dir_speed').innerHTML = "Wind direction: "+ weather.wind.deg
             // + " Degrees / Wind speed: "+weather.wind.speed + " MPH";
             document.querySelector('#wind_dir_speed').innerHTML = "Wind direction: "+ weather.current.wind_deg

@@ -10,38 +10,64 @@
     <title>Day Off Planner</title>
 </head>
 <body>
-    <header id=landing-page class="profile-background" alt="Background Image Banner">
-        <section class="container">            
-            <nav class="navigation">
-                <a href="#landing-page">Weather Dashboard</a>
-                <div class="navigation-right">
-            </div>
-            </ul>
-        </nav>
-        <h2 class="hero-intro">Want to see the weather?</h2>
-        <h3 class="hero-intro2">Enter a city below!</h3>
-            </section>
-         </header>
+
          <center>
-            <p class="inputContainer">Enter a city: <input type="text" id="cityInput"></p>
+            <p id="inputContainer">Enter a city: <input type="text" id="cityInput"></p>
             <button>Search</button>
       <div class="weather">
          <div class="currentWeather">
+            <h1 id="Para2">Current Weather</h1>
          <h2 id="city">City</h2>
          <h1 id="temp">Temp</h1>
-         <span id="min_max_temp">Min. & Max. Temp</span>
+         <span id="humidity">Humidity</span>
+       <!--
          <h4 id="weather">Weather</h4>
          <p id="weather_desc">Weather Description</p>
+         -->
          <span id="wind_dir_speed">Wind Direction & Speed</span>
         </div>
-        <div class="futureWeather">
-         <h1 class="Para1">5 Day Weather Forecast</h1>
-         
-         
-         <h2 class="cityName">--City--</h2>
-        </div>
+        <h1 id="Para1">5 Day Weather Forecast</h1>
+        <h2 id="cityName">--City--</h2>
+ 
     </div>
     </center>
+
+    <div id="weatherContainer">
+        <div id="iconsContainer">
+            <div class="icons">
+                <p class="weather" id="day1"></p>
+                <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img1" alt=""></div>
+                <p class="minValues" id="day1Min">Min. Temp: </p>
+                <p class="maxValues" id="day1Max">Max Temp: </p>
+            </div>
+            <div class="icons">
+                <p class="weather" id="day2"></p>
+                <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img1" alt=""></div>
+                <p class="minValues" id="day2Min">Min. Temp: </p>
+                <p class="maxValues" id="day2Max">Max Temp: </p>
+            </div>
+            <div class="icons">
+                <p class="weather" id="day3"></p>
+                <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img1" alt=""></div>
+                <p class="minValues" id="day3Min">Min. Temp: </p>
+                <p class="maxValues" id="day3Max">Max Temp: </p>
+            </div>
+            <div class="icons">
+                <p class="weather" id="day4"></p>
+                <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img1" alt=""></div>
+                <p class="minValues" id="day4Min">Min. Temp: </p>
+                <p class="maxValues" id="day4Max">Max Temp: </p>
+            </div>
+            <div class="icons">
+                <p class="weather" id="day5"></p>
+                <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img1" alt=""></div>
+                <p class="minValues" id="day5Min">Min. Temp: </p>
+                <p class="maxValues" id="day5Max">Max Temp: </p>
+            </div>
+        </div>
+    </div>
+
+
          <div>Previous Cities
             <ul id="previous_cities"></ul>
          </div>
