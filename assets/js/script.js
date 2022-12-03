@@ -11,6 +11,43 @@ var cityStorage = window.localStorage.getItem("City")
 ? JSON.parse(window.localStorage.getItem("City"))
 : [];
 
+//Getting and displaying the text for the upcoming five days of the week
+var d = new Date();
+var day1 =d.getDate();
+var month1 = d.getMonth();
+var year1 = d.getFullYear();
+
+var day0 = d.getDate();
+var month0 = d.getMonth();
+var year0 = d.getFullYear();
+
+
+if(month0 < 12){
+    month0 = month0 + 1;
+}
+else{
+    month0 = 12;
+};
+
+console.log(d);
+var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
+
+//Function to get the correct integer for the index of the days array
+function CheckDay(day){
+    if(day + d.getDay() > 6){
+        return day + d.getDay() - 7;
+    }
+    else{
+        return day + d.getDay();
+    }
+}
+
+    for(i = 0; i<5; i++){
+        document.getElementById("day" + (i+1)).innerHTML = weekday[CheckDay(i+1)];
+    }
+    
+
+document.querySelector('#Para2').innerHTML = "Current Weather" + ' ('+ month0 +'/'+ day0 +'/' +year0 +')';
 
 // Function to print cities from history at bottom of page.    
     for (var i = 0; i < cityStorage.length; i++) {
@@ -51,7 +88,19 @@ searchValue.addEventListener('keypress', setFunc);
 
 function getCurrentWeather(city) {
     city = searchValue.value;
-    document.querySelector('#city').innerHTML = city;
+    var day0 = d.getDate();
+    var month0 = d.getMonth();
+    var year0 = d.getFullYear();
+    
+    
+    if(month0 < 12){
+        month0 = month0 + 1;
+    }
+    else{
+        month0 = 12;
+    };
+
+    document.querySelector('#city').innerHTML = city+ ' ('+ month0 +'/'+ day0 +'/' +year0 +')';
 
     cityStorage.push(city);
     localStorage.setItem("City", city);
@@ -178,20 +227,5 @@ function getCurrentWeather(city) {
    })
 }
 
-//Getting and displaying the text for the upcoming five days of the week
-var d = new Date();
-var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
 
-//Function to get the correct integer for the index of the days array
-function CheckDay(day){
-    if(day + d.getDay() > 6){
-        return day + d.getDay() - 7;
-    }
-    else{
-        return day + d.getDay();
-    }
-}
 
-    for(i = 0; i<5; i++){
-        document.getElementById("day" + (i+1)).innerHTML = weekday[CheckDay(i+1)];
-    }

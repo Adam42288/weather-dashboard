@@ -20,7 +20,7 @@ font-weight:bold;
 
 #Para1{
     position: absolute;
-    top: 87%;
+    top: 90%;
     left: 80%;
     transform: translate(-50%, -50%);
     height: 450px;
@@ -29,7 +29,7 @@ font-weight:bold;
 
 #weatherContainer{
     position: absolute;
-    top: 95%;
+    top: 97%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -57,6 +57,16 @@ font-weight:bold;
     height: 400px;
     width: 1350px;    
     border: 5px solid rgb(31, 82, 82);    
+    border-radius: 10px;
+}
+
+.icons0{
+    display: inline-bock;
+    float: left;
+    height: 350px;
+    width: 450px;
+    margin: 20px;
+    border: 5px solid rgb(48, 47, 47);
     border-radius: 10px;
 }
 
