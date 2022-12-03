@@ -55,6 +55,12 @@ let uniqueCities = [...new Set(cityStorage)];
 console.log(uniqueCities);
 
     for (var i = 0; i < uniqueCities.length; i++) {
+        if (uniqueCities[i] === '') {
+            console.log('null');
+        }
+        else {
+
+        
     var entry = document.createElement('li');
                                      // Create anchor element.
                                      var a = document.createElement('a'); 
@@ -69,14 +75,14 @@ console.log(uniqueCities);
                                      a.title = uniqueCities[i]; 
                                        
                                      // Set the href property.
-                                     a.href = "javascript:getLatLong(uniqueCities[i]);"; 
+                                     a.href = "javascript:getCurrentWeather(uniqueCities[i]);"; 
                                        
                                      // Append the anchor element to the body.
                                      entry.appendChild(a); 
 
         prevCities.appendChild(entry);
+    }
 }
-
 
 
 // Weather API placeholder
@@ -132,7 +138,7 @@ function getCurrentWeather(city) {
                                          a.title = city; 
                                            
                                          // Set the href property.
-                                         a.href = "javascript:getLatLong(city);"; 
+                                         a.href = "javascript:getCurrentWeather(Dallas);"; 
                                            
                                          // Append the anchor element to the body.
                                          entry.appendChild(a); 
@@ -140,31 +146,6 @@ function getCurrentWeather(city) {
             prevCities.appendChild(entry);
     
     }
-
-    // cityStorage.push(city);
-    // localStorage.setItem("City", city);
-    // console.log(localStorage.getItem("City"));
-    //  localStorage.setItem("City", JSON.stringify(cityStorage));
-    //     var entry = document.createElement('li');
-    //                                  // Create anchor element.
-    //                                  var a = document.createElement('a'); 
-          
-    //                                  // Create the text node for anchor element.
-    //                                  var link = document.createTextNode(city);
-                                       
-    //                                  // Append the text node to anchor element.
-    //                                  a.appendChild(link); 
-                                       
-    //                                  // Set the title.
-    //                                  a.title = city; 
-                                       
-    //                                  // Set the href property.
-    //                                  a.href = "javascript:getLatLong(city);"; 
-                                       
-    //                                  // Append the anchor element to the body.
-    //                                  entry.appendChild(a); 
-
-    //     prevCities.appendChild(entry);
 
     geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
     getLatLong(city)
