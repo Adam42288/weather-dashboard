@@ -43,37 +43,81 @@ searchValue.addEventListener('keypress', setFunc);
     function setFunc(e) {
 
         if(e.keyCode === 13) {
-            // getting the text that was entered into the input form on the site.
-            city = searchValue.value;
-            cityStorage.push(city);
-            localStorage.setItem("City", city);
-            console.log(localStorage.getItem("City"));
-             localStorage.setItem("City", JSON.stringify(cityStorage));
-                var entry = document.createElement('li');
-                                             // Create anchor element.
-                                             var a = document.createElement('a'); 
-                  
-                                             // Create the text node for anchor element.
-                                             var link = document.createTextNode(city);
-                                               
-                                             // Append the text node to anchor element.
-                                             a.appendChild(link); 
-                                               
-                                             // Set the title.
-                                             a.title = city; 
-                                               
-                                             // Set the href property.
-                                             a.href = "javascript:getLatLong(city);"; 
-                                               
-                                             // Append the anchor element to the body.
-                                             entry.appendChild(a); 
-
-                prevCities.appendChild(entry);
-
-            geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
-            getLatLong(city)
+            getCurrentWeather(searchValue.value);
         }
     }
+
+// getcurrentWeatherfunction
+
+function getCurrentWeather(city) {
+    city = searchValue.value;
+    document.querySelector('#city').innerHTML = city;
+
+    cityStorage.push(city);
+    localStorage.setItem("City", city);
+    console.log(localStorage.getItem("City"));
+     localStorage.setItem("City", JSON.stringify(cityStorage));
+        var entry = document.createElement('li');
+                                     // Create anchor element.
+                                     var a = document.createElement('a'); 
+          
+                                     // Create the text node for anchor element.
+                                     var link = document.createTextNode(city);
+                                       
+                                     // Append the text node to anchor element.
+                                     a.appendChild(link); 
+                                       
+                                     // Set the title.
+                                     a.title = city; 
+                                       
+                                     // Set the href property.
+                                     a.href = "javascript:getLatLong(city);"; 
+                                       
+                                     // Append the anchor element to the body.
+                                     entry.appendChild(a); 
+
+        prevCities.appendChild(entry);
+
+    geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
+    getLatLong(city)
+    getForecast(city)
+}
+
+
+    // button function
+
+    function getInfo() {
+        city = searchValue.value;
+        cityStorage.push(city);
+        localStorage.setItem("City", city);
+        console.log(localStorage.getItem("City"));
+         localStorage.setItem("City", JSON.stringify(cityStorage));
+            var entry = document.createElement('li');
+                                         // Create anchor element.
+                                         var a = document.createElement('a'); 
+              
+                                         // Create the text node for anchor element.
+                                         var link = document.createTextNode(city);
+                                           
+                                         // Append the text node to anchor element.
+                                         a.appendChild(link); 
+                                           
+                                         // Set the title.
+                                         a.title = city; 
+                                           
+                                         // Set the href property.
+                                         a.href = "javascript:getLatLong(city);"; 
+                                           
+                                         // Append the anchor element to the body.
+                                         entry.appendChild(a); 
+
+            prevCities.appendChild(entry);
+
+        geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
+        getLatLong(city)
+        getForecast(city)
+    }
+
     function getLatLong(city) {
         fetch(geoQuery)
         .then (function (response) {
@@ -106,7 +150,7 @@ searchValue.addEventListener('keypress', setFunc);
             console.log(weather);
 
             // document.querySelector('#city').innerHTML = weather.name;
-            document.querySelector('#city').innerHTML = city;
+           // document.querySelector('#city').innerHTML = city;
             // document.querySelector('#temp').innerHTML = weather.main.temp;
             document.querySelector('#temp').innerHTML = "Current Temperature: " + weather.current.temp;
             // document.querySelector('#min_max_temp').innerHTML = 
@@ -126,4 +170,13 @@ searchValue.addEventListener('keypress', setFunc);
         })
     }
 
-  
+   function getForecast(city) {
+    queryURL = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid="+APIKey;
+    fetch(queryURL)
+    .then (function (response) {
+        return response.json();
+    })
+    .then(function (weather) {
+        console.log(weather);
+   })
+}
