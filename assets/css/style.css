@@ -98,6 +98,11 @@ font-weight:bold;
     font-weight: bold;
 }
 
+.weathers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .tempValues{
     text-align: center;
     display: inline-block;

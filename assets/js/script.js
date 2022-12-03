@@ -49,29 +49,34 @@ function CheckDay(day){
 
 document.querySelector('#Para2').innerHTML = "Current Weather" + ' ('+ month0 +'/'+ day0 +'/' +year0 +')';
 
-// Function to print cities from history at bottom of page.    
-    for (var i = 0; i < cityStorage.length; i++) {
+// Function to print cities from history at bottom of page.   
+console.log(cityStorage);
+let uniqueCities = [...new Set(cityStorage)];
+console.log(uniqueCities);
+
+    for (var i = 0; i < uniqueCities.length; i++) {
     var entry = document.createElement('li');
                                      // Create anchor element.
                                      var a = document.createElement('a'); 
           
                                      // Create the text node for anchor element.
-                                     var link = document.createTextNode(cityStorage[i]);
+                                     var link = document.createTextNode(uniqueCities[i]);
                                        
                                      // Append the text node to anchor element.
                                      a.appendChild(link); 
                                        
                                      // Set the title.
-                                     a.title = cityStorage[i]; 
+                                     a.title = uniqueCities[i]; 
                                        
                                      // Set the href property.
-                                     a.href = "javascript:getLatLong(cityStorage[i]);"; 
+                                     a.href = "javascript:getLatLong(uniqueCities[i]);"; 
                                        
                                      // Append the anchor element to the body.
                                      entry.appendChild(a); 
 
         prevCities.appendChild(entry);
 }
+
 
 
 // Weather API placeholder
@@ -83,6 +88,12 @@ searchValue.addEventListener('keypress', setFunc);
             getCurrentWeather(searchValue.value);
         }
     }
+
+ // search button function
+
+     function getInfo() {
+         getCurrentWeather(searchValue.value);
+     }
 
 // getcurrentWeatherfunction
 
@@ -102,41 +113,7 @@ function getCurrentWeather(city) {
 
     document.querySelector('#city').innerHTML = city+ ' ('+ month0 +'/'+ day0 +'/' +year0 +')';
 
-    cityStorage.push(city);
-    localStorage.setItem("City", city);
-    console.log(localStorage.getItem("City"));
-     localStorage.setItem("City", JSON.stringify(cityStorage));
-        var entry = document.createElement('li');
-                                     // Create anchor element.
-                                     var a = document.createElement('a'); 
-          
-                                     // Create the text node for anchor element.
-                                     var link = document.createTextNode(city);
-                                       
-                                     // Append the text node to anchor element.
-                                     a.appendChild(link); 
-                                       
-                                     // Set the title.
-                                     a.title = city; 
-                                       
-                                     // Set the href property.
-                                     a.href = "javascript:getLatLong(city);"; 
-                                       
-                                     // Append the anchor element to the body.
-                                     entry.appendChild(a); 
-
-        prevCities.appendChild(entry);
-
-    geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
-    getLatLong(city)
-    getForecast(city)
-}
-
-
-    // button function
-
-    function getInfo() {
-        city = searchValue.value;
+    if (!cityStorage.includes(city)) {
         cityStorage.push(city);
         localStorage.setItem("City", city);
         console.log(localStorage.getItem("City"));
@@ -159,13 +136,43 @@ function getCurrentWeather(city) {
                                            
                                          // Append the anchor element to the body.
                                          entry.appendChild(a); 
-
+    
             prevCities.appendChild(entry);
-
-        geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
-        getLatLong(city)
-        getForecast(city)
+    
     }
+
+    // cityStorage.push(city);
+    // localStorage.setItem("City", city);
+    // console.log(localStorage.getItem("City"));
+    //  localStorage.setItem("City", JSON.stringify(cityStorage));
+    //     var entry = document.createElement('li');
+    //                                  // Create anchor element.
+    //                                  var a = document.createElement('a'); 
+          
+    //                                  // Create the text node for anchor element.
+    //                                  var link = document.createTextNode(city);
+                                       
+    //                                  // Append the text node to anchor element.
+    //                                  a.appendChild(link); 
+                                       
+    //                                  // Set the title.
+    //                                  a.title = city; 
+                                       
+    //                                  // Set the href property.
+    //                                  a.href = "javascript:getLatLong(city);"; 
+                                       
+    //                                  // Append the anchor element to the body.
+    //                                  entry.appendChild(a); 
+
+    //     prevCities.appendChild(entry);
+
+    geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
+    getLatLong(city)
+    getForecast(city)
+}
+
+
+
 
     function getLatLong(city) {
         fetch(geoQuery)
