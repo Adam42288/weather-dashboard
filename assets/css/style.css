@@ -18,16 +18,34 @@ font-size:20px;
 font-weight:bold;
 }
 
+#Para1{
+    position: absolute;
+    top: 87%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    height: 450px;
+    width: 1400px;
+}
+
 #weatherContainer{
     position: absolute;
-    top: 70%;
+    top: 95%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    height: 300px;
-    width: 1300px;
+    height: 450px;
+    width: 1400px;
     border: 5px solid rgba(97, 95, 95, 0.829);    
     border-radius: 10px;
+}
+#currentWeather{
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    height: 350px;
+    width: 300px;
 }
 
 #iconsContainer{
@@ -36,8 +54,8 @@ font-weight:bold;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    height: 240px;
-    width: 1200px;    
+    height: 400px;
+    width: 1350px;    
     border: 5px solid rgb(31, 82, 82);    
     border-radius: 10px;
 }
@@ -45,8 +63,8 @@ font-weight:bold;
 .icons{
     display: inline-bock;
     float: left;
-    height: 200px;
-    width: 190px;
+    height: 310px;
+    width: 215px;
     margin: 20px;
     border: 5px solid rgb(48, 47, 47);
     border-radius: 10px;
@@ -70,7 +88,7 @@ font-weight:bold;
     font-weight: bold;
 }
 
-.minValues{
+.tempValues{
     text-align: center;
     display: inline-block;
     border-radius: 5px;
@@ -82,7 +100,18 @@ font-weight:bold;
 }
 
 
-.maxValues{
+.windValues{
+    text-align: center;
+    display: inline-block;
+    border-radius: 5px;
+    height: 25px;
+    width: 85px;
+    margin: 0;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.humidityValues{
     text-align: center;
     display: inline-block;
     border-radius: 5px;

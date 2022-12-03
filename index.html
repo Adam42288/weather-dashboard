@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Day Off Planner</title>
+    <title>Weather Dashboard</title>
 </head>
 <body>
 
@@ -15,54 +15,57 @@
             <p id="inputContainer">Enter a city: <input type="text" id="cityInput"></p>
             <button type="button" onclick="getInfo()">Search</button>
       <div class="weather">
-         <div class="currentWeather">
+         <div class="currentWeather" id="currentWeather">
             <h1 id="Para2">Current Weather</h1>
-         <h2 id="city">City</h2>
-         <h1 id="temp">Temp</h1>
-         <span id="humidity">Humidity</span>
-       <!--
-         <h4 id="weather">Weather</h4>
-         <p id="weather_desc">Weather Description</p>
-         -->
-         <span id="wind_dir_speed">Wind Direction & Speed</span>
+            <div class="icons">
+                <p class="weather" id="day0"></p>
+                <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img0" alt=""></div>
+                <h2 id="city">City</h2>
+                <p class="tempValues" id="temp">Temp: </p>
+                <p class="windValues" id="wind_dir_speed">Wind Speed: </p>
+                <p class="humidityValues" id="humidity">Humidity: </p>
+            </div>
         </div>
-        <h1 id="Para1">5 Day Weather Forecast</h1>
-        <h2 id="cityName">--City--</h2>
- 
+       
     </div>
     </center>
-
+    <h1 id="Para1">5 Day Weather Forecast</h1> 
     <div id="weatherContainer">
         <div id="iconsContainer">
             <div class="icons">
                 <p class="weather" id="day1"></p>
                 <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img1" alt=""></div>
-                <p class="minValues" id="day1Min">Min. Temp: </p>
-                <p class="maxValues" id="day1Max">Max Temp: </p>
+                <p class="tempValues" id="day1Min">Temp: </p>
+                <p class="windValues" id="day1Max">Wind Speed: </p>
+                <p class="humidityValues" id="day1humidity">Humidity: </p>
             </div>
             <div class="icons">
                 <p class="weather" id="day2"></p>
                 <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img2" alt=""></div>
-                <p class="minValues" id="day2Min">Min. Temp: </p>
-                <p class="maxValues" id="day2Max">Max Temp: </p>
+                <p class="tempValues" id="day2Min">Temp: </p>
+                <p class="windValues" id="day2Max">Wind Speed: </p>
+                <p class="humidityValues" id="day2humidity">Humidity: </p>
             </div>
             <div class="icons">
                 <p class="weather" id="day3"></p>
                 <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img3" alt=""></div>
-                <p class="minValues" id="day3Min">Min. Temp: </p>
-                <p class="maxValues" id="day3Max">Max Temp: </p>
+                <p class="tempValues" id="day3Min">Temp: </p>
+                <p class="windValues" id="day3Max">Wind Speed: </p>
+                <p class="humidityValues" id="day3humidity">Humidity: </p>
             </div>
             <div class="icons">
                 <p class="weather" id="day4"></p>
                 <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img4" alt=""></div>
-                <p class="minValues" id="day4Min">Min. Temp: </p>
-                <p class="maxValues" id="day4Max">Max Temp: </p>
+                <p class="tempValues" id="day4Min">Temp: </p>
+                <p class="windValues" id="day4Max">Wind Speed: </p>
+                <p class="humidityValues" id="day4humidity">Humidity: </p>
             </div>
             <div class="icons">
                 <p class="weather" id="day5"></p>
                 <div class="image"><img src="./assets/images/dots.png" class="imgClass" id ="img5" alt=""></div>
-                <p class="minValues" id="day5Min">Min. Temp: </p>
-                <p class="maxValues" id="day5Max">Max Temp: </p>
+                <p class="tempValues" id="day5Min">Temp: </p>
+                <p class="windValues" id="day5Max">Wind Speed: </p>
+                <p class="humidityValues" id="day5humidity">Humidity: </p>
             </div>
         </div>
     </div>

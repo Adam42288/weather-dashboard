@@ -148,10 +148,10 @@ function getCurrentWeather(city) {
         })
         .then(function (weather) {
             console.log(weather);
-            document.querySelector('#temp').innerHTML = "Current Temperature: " + weather.current.temp;            
+            document.getElementById("img0").src = "http://openweathermap.org/img/wn/"+ weather.current.weather[0].icon +".png";
+            document.querySelector('#temp').innerHTML = "Temp: " + weather.current.temp;            
             document.querySelector('#humidity').innerHTML = "Humidity: "+ weather.current.humidity;
-            document.querySelector('#wind_dir_speed').innerHTML = "Wind direction: "+ weather.current.wind_deg
-            + " Degrees / Wind speed: "+weather.current.wind_speed + " MPH";
+            document.querySelector('#wind_dir_speed').innerHTML = "Wind Speed: "+weather.current.wind_speed + " MPH";
         })
         .catch(function (err) {
             console.log(err);
@@ -166,29 +166,32 @@ function getCurrentWeather(city) {
     })
     .then(function (forecast) {
         console.log(forecast);
-            //Getting the min and max values for each day
-    for(i = 0; i<5; i++){
-        document.getElementById("day" + (i+1) + "Min").innerHTML = "Min: " + Number(forecast.list[i].main.temp_min).toFixed(1)+ "°";
-        //Number(1.3450001).toFixed(2); // 1.35
-    }
-
-    for(i = 0; i<5; i++){
-        document.getElementById("day" + (i+1) + "Max").innerHTML = "Max: " + Number(forecast.list[i].main.temp_max).toFixed(2) + "°";
-    }
-
-        //Getting Weather Icons, set j+8 due to forecast being broken down into 3 hour increments. This assures we get a different day.
-        var j = 0;
+        // Getting weather icons, temp, wind, and humidity for every day. j + 8 due to each day being +8.
+        var j = 1;
         for (var i = 1; i<6; i++) {
             document.getElementById("img"+i).src = "http://openweathermap.org/img/wn/"+ forecast.list[j].weather[0].icon +".png";
+            document.getElementById("day" + (i) + "Min").innerHTML = "Temp: " + Number(forecast.list[j].main.temp).toFixed(1)+ "°";
+            document.getElementById("day" + (i) + "Max").innerHTML = "Wind Speed: " + Number(forecast.list[j].wind.speed)+ "MPH";
+            document.getElementById("day" + (i) + "humidity").innerHTML = "Humidity: " + Number(forecast.list[j].main.humidity);
             j = j +8;
         }
-            // document.getElementById("img1").src = "http://openweathermap.org/img/wn/"+ forecast.list[0].weather[0].icon +".png";
-            // document.getElementById("img2").src = "http://openweathermap.org/img/wn/"+ forecast.list[8].weather[0].icon +".png";
-            // document.getElementById("img3").src = "http://openweathermap.org/img/wn/"+ forecast.list[16].weather[0].icon +".png";
-            // document.getElementById("img4").src = "http://openweathermap.org/img/wn/"+ forecast.list[24].weather[0].icon +".png";
-            // document.getElementById("img5").src = "http://openweathermap.org/img/wn/"+ forecast.list[32].weather[0].icon +".png";
-        
-        
-
    })
 }
+
+//Getting and displaying the text for the upcoming five days of the week
+var d = new Date();
+var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
+
+//Function to get the correct integer for the index of the days array
+function CheckDay(day){
+    if(day + d.getDay() > 6){
+        return day + d.getDay() - 7;
+    }
+    else{
+        return day + d.getDay();
+    }
+}
+
+    for(i = 0; i<5; i++){
+        document.getElementById("day" + (i+1)).innerHTML = weekday[CheckDay(i+1)];
+    }
