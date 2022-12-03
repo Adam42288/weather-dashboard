@@ -148,20 +148,8 @@ function getCurrentWeather(city) {
         })
         .then(function (weather) {
             console.log(weather);
-
-            // document.querySelector('#city').innerHTML = weather.name;
-           // document.querySelector('#city').innerHTML = city;
-            // document.querySelector('#temp').innerHTML = weather.main.temp;
-            document.querySelector('#temp').innerHTML = "Current Temperature: " + weather.current.temp;
-            // document.querySelector('#min_max_temp').innerHTML = 
+            document.querySelector('#temp').innerHTML = "Current Temperature: " + weather.current.temp;            
             document.querySelector('#humidity').innerHTML = "Humidity: "+ weather.current.humidity;
-            // "Min. "+weather.main.temp_min+" / Max. "+weather.main.temp_max;
-            // document.querySelector('#weather').innerHTML = weather.weather[0].main;
-            // document.querySelector('#weather').innerHTML = weather.current.weather[0].main;
-            // document.querySelector('#weather_desc').innerHTML = weather.weather[0].description;
-            // document.querySelector('#weather_desc').innerHTML = weather.current.weather[0].description;
-            // document.querySelector('#wind_dir_speed').innerHTML = "Wind direction: "+ weather.wind.deg
-            // + " Degrees / Wind speed: "+weather.wind.speed + " MPH";
             document.querySelector('#wind_dir_speed').innerHTML = "Wind direction: "+ weather.current.wind_deg
             + " Degrees / Wind speed: "+weather.current.wind_speed + " MPH";
         })
@@ -176,7 +164,31 @@ function getCurrentWeather(city) {
     .then (function (response) {
         return response.json();
     })
-    .then(function (weather) {
-        console.log(weather);
+    .then(function (forecast) {
+        console.log(forecast);
+            //Getting the min and max values for each day
+    for(i = 0; i<5; i++){
+        document.getElementById("day" + (i+1) + "Min").innerHTML = "Min: " + Number(forecast.list[i].main.temp_min).toFixed(1)+ "°";
+        //Number(1.3450001).toFixed(2); // 1.35
+    }
+
+    for(i = 0; i<5; i++){
+        document.getElementById("day" + (i+1) + "Max").innerHTML = "Max: " + Number(forecast.list[i].main.temp_max).toFixed(2) + "°";
+    }
+
+        //Getting Weather Icons, set j+8 due to forecast being broken down into 3 hour increments. This assures we get a different day.
+        var j = 0;
+        for (var i = 1; i<6; i++) {
+            document.getElementById("img"+i).src = "http://openweathermap.org/img/wn/"+ forecast.list[j].weather[0].icon +".png";
+            j = j +8;
+        }
+            // document.getElementById("img1").src = "http://openweathermap.org/img/wn/"+ forecast.list[0].weather[0].icon +".png";
+            // document.getElementById("img2").src = "http://openweathermap.org/img/wn/"+ forecast.list[8].weather[0].icon +".png";
+            // document.getElementById("img3").src = "http://openweathermap.org/img/wn/"+ forecast.list[16].weather[0].icon +".png";
+            // document.getElementById("img4").src = "http://openweathermap.org/img/wn/"+ forecast.list[24].weather[0].icon +".png";
+            // document.getElementById("img5").src = "http://openweathermap.org/img/wn/"+ forecast.list[32].weather[0].icon +".png";
+        
+        
+
    })
 }
