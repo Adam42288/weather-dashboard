@@ -7,7 +7,7 @@ var geoQuery;
 var lat;
 var long;
 var prevCities = document.getElementById('previous_cities');
-var prevCitiesButton = document.getElementById('previouscities');
+var prevCitiesButton = document.getElementById('prevcities');
 var cityStorage = window.localStorage.getItem("City")
 ? JSON.parse(window.localStorage.getItem("City"))
 : [];
@@ -57,33 +57,7 @@ console.log(uniqueCities);
     newBtn.onclick = function() {
         getCurrentWeather(this.getAttribute("data-city"));
     };
-    // newBtn.onclick = getCurrentWeather('Dallas');
-    prevCities.appendChild(newBtn);
-        //                               Create anchor element.
-        //                              var a = document.createElement('a'); 
-          
-        //                               Create the text node for anchor element.
-        //                              var link = document.createTextNode(uniqueCities[i]);
-                                     
-        //                               Append the text node to anchor element.
-        //                              a.appendChild(link); 
-        //                                var oneCity = a.textContent;
-        //                               Set the title.
-        //                              a.title = uniqueCities[i]; 
-                                       
-        //                               Set the href property.
-        //                             a.href = "javascript:getAnchor();"; 
-
-        //                               Set the onclick
-
-        //                               a.onclick = function () { 
-        //                                 getCurrentWeather('Dallas');
-        //                                 }
-                                       
-        //                               Append the anchor element to the body.
-        //                              entry.appendChild(a); 
-                                    
-        // prevCities.appendChild(entry);
+    prevCitiesButton.appendChild(newBtn);
     }
 }
 
@@ -103,16 +77,6 @@ searchValue.addEventListener('keypress', setFunc);
      function getInfo() {
          getCurrentWeather(searchValue.value);
      }
-
-
-// anchor tag function
-// MUST FIX: currently doesn't work.
-function getAnchor() {
-    // traverse the DOM and get the url from the title of anchor tag.
-    // Find out how to get the text content of the anchor tag that was clicked and pass that into URLCity
-    var URLCity = 'Dallas';
-    getCurrentWeather('Dallas');
-}
 
 // getcurrentWeatherfunction
 function getCurrentWeather(city) {
@@ -141,35 +105,8 @@ function getCurrentWeather(city) {
          newBtn.onclick = function() {
             getCurrentWeather(this.getAttribute("data-city"));
         };
-         // newBtn.onclick = getCurrentWeather('Dallas');
-         prevCities.appendChild(newBtn);
-        //  // Adds the current city to list of previous cities.
-        //     var entry = document.createElement('li');
-        //                                  // Create anchor element.
-        //                                  var a = document.createElement('a'); 
-              
-        //                                  // Create the text node for anchor element.
-        //                                  var link = document.createTextNode(city);
-                                           
-        //                                  // Append the text node to anchor element.
-        //                                  a.appendChild(link); 
-                                           
-        //                                  // Set the title.
-        //                                  a.title = city; 
-                                           
-        //                                    // Set the href property.
-        //                             a.href = "javascript:getAnchor();"; 
+        prevCitiesButton.appendChild(newBtn);
 
-        //                             // Set the onclick
-
-        //                             a.onclick = function () { 
-        //                               getCurrentWeather('Dallas');
-        //                               }
-
-        //                                  // Append the anchor element to the body.
-        //                                  entry.appendChild(a); 
-    
-        //     prevCities.appendChild(entry);
     
     }
 // create fetch url to retrieve the latitude and longitude  of city.
