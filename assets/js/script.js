@@ -12,6 +12,7 @@ var cityStorage = window.localStorage.getItem("City")
 ? JSON.parse(window.localStorage.getItem("City"))
 : [];
 
+
 //Getting and displaying the text for the upcoming five days of the week
 var d = new Date();
 var day0 = d.getDate();
@@ -76,7 +77,37 @@ searchValue.addEventListener('keypress', setFunc);
 
      function getInfo() {
          getCurrentWeather(searchValue.value);
-     }
+     };
+
+     function findMe() {
+
+            const succesfulLookup = (position) => {
+            var latitude2 = position.coords.latitude;
+            var longitude2 = position.coords.longitude;
+            var city2;
+            console.log(latitude2);
+            console.log (longitude2);
+            console.log(position);
+
+            fetch("http://api.openweathermap.org/geo/1.0/reverse?lat=" + latitude2 + "&lon=" + longitude2 +"&limit=1&appid="+ APIKey)
+            .then (function (response) {
+                return response.json();
+            })
+            .then(function (latlong) {
+                // Sets latitude and longitude of city.
+                console.log(latlong);
+                city2 = latlong[0].name;
+                getCurrentWeather(city2);
+                document.querySelector('#cityInput').value = city2;
+              
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    };
+        navigator.geolocation.getCurrentPosition(succesfulLookup, console.log);
+
+     };
 
 // getcurrentWeatherfunction
 function getCurrentWeather(city) {
