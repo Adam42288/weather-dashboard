@@ -89,7 +89,7 @@ searchValue.addEventListener('keypress', setFunc);
             console.log (longitude2);
             console.log(position);
 
-            fetch("http://api.openweathermap.org/geo/1.0/reverse?lat=" + latitude2 + "&lon=" + longitude2 +"&limit=1&appid="+ APIKey)
+            fetch("https://api.openweathermap.org/geo/1.0/reverse?lat=" + latitude2 + "&lon=" + longitude2 +"&limit=1&appid="+ APIKey)
             .then (function (response) {
                 return response.json();
             })
@@ -141,7 +141,7 @@ function getCurrentWeather(city) {
     
     }
 // create fetch url to retrieve the latitude and longitude  of city.
-    geoQuery = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
+    geoQuery = 'https://api.openweathermap.org/geo/1.0/direct?q='+ city+ '&limit=5&appid=' + APIKey;
    // calls getLatLong function and passes city input by user.
     getLatLong(city)
     // calls getForecast and passes city input by user.
@@ -177,7 +177,7 @@ function getCurrentWeather(city) {
         })
         .then(function (weather) {
             
-            document.getElementById("img0").src = "http://openweathermap.org/img/wn/"+ weather.current.weather[0].icon +".png";
+            document.getElementById("img0").src = "https://openweathermap.org/img/wn/"+ weather.current.weather[0].icon +".png";
             document.querySelector('#temp').innerHTML = "Temp: " + weather.current.temp;            
             document.querySelector('#humidity').innerHTML = "Humidity: "+ weather.current.humidity;
             document.querySelector('#wind_dir_speed').innerHTML = "Wind Speed: "+weather.current.wind_speed + " MPH";
@@ -199,7 +199,7 @@ function getCurrentWeather(city) {
         // Getting weather icons, temp, wind, and humidity for every day. j + 8 due to each day being +8.
         var j = 1;
         for (var i = 1; i<6; i++) {
-            document.getElementById("img"+i).src = "http://openweathermap.org/img/wn/"+ forecast.list[j].weather[0].icon +".png";
+            document.getElementById("img"+i).src = "https://openweathermap.org/img/wn/"+ forecast.list[j].weather[0].icon +".png";
             document.getElementById("day" + (i) + "Min").innerHTML = "Temp: " + Number(forecast.list[j].main.temp).toFixed(1)+ "°";
             document.getElementById("day" + (i) + "Max").innerHTML = "Wind Speed: " + Number(forecast.list[j].wind.speed)+ "MPH";
             document.getElementById("day" + (i) + "humidity").innerHTML = "Humidity: " + Number(forecast.list[j].main.humidity);
